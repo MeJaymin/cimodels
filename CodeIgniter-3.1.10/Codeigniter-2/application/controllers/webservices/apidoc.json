@@ -1,0 +1,12 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "description": "",
+  "header": {
+    "filename": "header.md"
+  },
+  "template": {
+  	"withCompare": true,
+  	"withGenerator": false
+  }
+}

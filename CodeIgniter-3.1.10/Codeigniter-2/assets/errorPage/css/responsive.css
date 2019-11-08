@@ -1,0 +1,93 @@
+/* We will use this media query only for responsive behaviour  */
+@media screen and (max-width:1199px) { 
+
+}
+
+@media screen and (max-width:1023px) { 
+/*.container, .content, .left-content, .main-content { width: 100%}*/
+.container { width: 100%}
+.login-wrapper .container{ width: 100%; }
+.main-content { margin-left: 0; padding: 30px 15px; }
+.left-content { display: none; }
+
+.menubtn {width:30px; height:30px; border-radius:8px; cursor:pointer; display: block; float: right; position: relative; -webkit-transition:all 0.5s ease; -ms-transition:all 0.5s ease;transition:all 0.5s ease; color: #ffffff; font-size: 16px; line-height: 34px; padding: 0px 0px }
+.menubtn em {position:absolute; right:2px; top:10px; background:#FFFFFF; width:25px; height:2px; border-radius:2px; -webkit-border-radius:2px; -ms-border-radius:2px; font-size:0px;}
+.menubtn em + em { top: 17px; }
+.menubtn em + em + em { top: 24px;}
+.menubtn:hover { color: #ffffff } 
+
+.menu { margin-top: 5px; }
+.menu .topmenu{ display: none; -webkit-transition:all 0.5s ease; -ms-transition:all 0.5s ease;transition:all 0.5s ease; }
+
+.push-nav .menu > .topmenu {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	display: block;
+	top: 90px;
+	z-index: 9;
+	background: #252f39; 
+	text-align: left;
+	border-top: 1px solid rgba(255,255,255,0.5)
+}
+.push-nav .menu ul li { display: block; text-align: left; }
+.push-nav .menu ul li a { color: #fff; padding: 8px 10px; font-size: 14px; border-bottom: 0px solid #cecece }
+.push-nav .menu ul li a:hover { color: #fff }
+.push-nav .menu ul li:last-child a { border: 0px; }
+.push-nav .menu ul li ul {
+	display: block;
+	box-shadow: none;
+	background: none;
+	padding-left: 40px;
+	position: relative;
+}
+
+.push-nav .menu .left-content {
+	display: block;
+	width: 100%;
+	position: relative;
+	background: none;
+	padding: 0;
+}
+.push-nav .menu ul li .fa-caret-down { display: none; }
+.leftmenu { padding: 0 }
+
+
+.fa-hat {}
+.fa-hat:before, .fa-shoe:before, .fa-tshirt:before, .fa-age:before { background-image: url(../images/hat-icon-white.png); background-repeat: no-repeat; background-position: left top;}
+.fa-shoe:before { background-image: url(../images/shoe-icon-white.png); background-size: cover; }
+.fa-tshirt:before { background-image: url(../images/tshirt-icon-white.png); background-size: 100%; }
+.fa-age:before { background-image: url(../images/age-icon-white.png); background-size: 100%; }
+}
+
+@media screen and (max-width:767px) { 
+.container, .content, .left-content, .main-content { width: 100%}
+header .logo {
+	max-width: 90px;
+}
+
+.push-nav .menu > .topmenu { top: 84px; }
+
+.dashboard-btn { float: left; margin-bottom: 15px; }
+.content-searchbox { float: right; width: 100%; }
+
+/*.res-table table th { display: none; }
+.res-table table td { display: block; border: 0px; padding: 10px 10px; text-align: left; border-bottom:1px solid #8f8f8f; position: relative; padding-left: 51%; min-height: 60px; word-break:break-all; }
+.res-table table td span { display: block; width: 48%; position: absolute; top:0; bottom: 0; padding: 10px; left: 0px; border-right:1px solid #8f8f8f; font-weight: 600 }*/
+.loginbox .logo {
+	max-width: 150px;
+}
+
+.logo{ float: none; max-width: 250px; }
+.loginbox { width: 100%; }
+.loginbox .submitbtn-box { width: 100%; float: none; }
+.loginbox .submitbtn-box input { width: 100%;}
+
+
+.form-container .small { width: 100% }
+.form-container .medium { width: 100%; }
+.form-container .large { width: 100%; }
+.form-container .form-label { float: none; width: 100%; padding-top: 5px; margin-top: 2px;}
+.form-container .controls { margin-left: 0px;}
+.homepage .container { padding: 0 15px; }
+}

@@ -1,0 +1,15 @@
+{
+    "name": "synapsepay/synapse-pay-rest",
+    "description": "A simple SynapsePay v3 Rest API wrapper.",
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "homepage": "https://synapsepay.com/",
+    "license": "MIT",
+    "keywords": ["synapse_pay", "payments", "banking", "api"],
+    "autoload": {
+        "psr-4": {
+            "SynapsePayRest\\": "src/SynapsePayRest"
+        }
+    }
+}
