@@ -1,0 +1,42 @@
+Companhy na admin
+can roles create
+
+
+
+Root admin
+roles create kai
+company mate
+
+
+Company login
+add employees
+id email password name phonenumber role
+email password email krvano che? yes
+
+
+product
+
+
+Sizes
+
+
+Finishing
+
+category and subcategory n level
+
+
+Categories Interopr and exterior
+wall floor common
+sub in both parent
+MAximum file size 50MB and store its resolution in both height width px and dpi
+
+
+While adding company creation it will have multiple sizes related to company
+
+
+Tiles creation
+
+Name, should be unique per company and delete will be soft delete
+
+
+

@@ -1,0 +1,27 @@
+PHP
+Tasks for the weekdays:
+
+1. Design database for Tiles app
+2. Integrate Fresh Admin LTE in CI
+3. Create webservices for login admin
+
+
+
+
+admin
+
+id email password status created_at updated_at
+
+company
+
+id name tagline description color_code status,username,password logo created_at updated_at
+
+roles
+
+1. Normal End user
+2. Companies
+3. Sub-Admin
+
+
+1. Admin can add/edit/delete companies
+2. Admin can add/edit/delete companies employees
