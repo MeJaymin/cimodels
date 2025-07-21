@@ -1,2 +1,2 @@
 # cimodels
-This repo will contain basic CI Codes for Model and Controller management and test
+This repo will contain basic CI Codes for Model and Controller management and test file
