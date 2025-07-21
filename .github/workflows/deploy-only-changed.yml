@@ -3,7 +3,7 @@ name: Test Changed File Detection
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   detect-and-prepare:
