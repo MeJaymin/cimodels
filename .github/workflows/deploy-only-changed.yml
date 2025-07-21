@@ -18,15 +18,17 @@ jobs:
         echo "Before: ${{ github.event.before }}"
         echo "After:  ${{ github.sha }}"
 
-    - name: Detect changed files
+        - name: Detect changed files
       id: detect
       run: |
+        git fetch origin master --depth=2
+        git diff --name-only HEAD^ HEAD > changed_files.txt
         echo "Changed files:"
-        git diff --name-only ${{ github.event.before }} ${{ github.sha }} > changed_files.txt
         cat changed_files.txt
         echo "FILES<<EOF" >> $GITHUB_ENV
         cat changed_files.txt >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
+
 
     - name: Copy only changed files to deploy folder
       run: |
