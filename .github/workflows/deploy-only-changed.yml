@@ -1,0 +1,45 @@
+name: Test Changed File Detection
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  detect-and-prepare:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Show current and previous commits
+      run: |
+        echo "Before: ${{ github.event.before }}"
+        echo "After:  ${{ github.sha }}"
+
+    - name: Detect changed files
+      id: detect
+      run: |
+        echo "Changed files:"
+        git diff --name-only ${{ github.event.before }} ${{ github.sha }} > changed_files.txt
+        cat changed_files.txt
+        echo "FILES<<EOF" >> $GITHUB_ENV
+        cat changed_files.txt >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
+
+    - name: Copy only changed files to deploy folder
+      run: |
+        mkdir deploy
+        while IFS= read -r file; do
+          echo "Copying $file"
+          if [[ -f "$file" ]]; then
+            mkdir -p "deploy/$(dirname "$file")"
+            cp "$file" "deploy/$file"
+          fi
+        done < changed_files.txt
+
+    - name: Show deploy folder content
+      run: |
+        echo "Deployed files:"
+        find deploy/
