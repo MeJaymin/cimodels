@@ -3,7 +3,7 @@ name: Test Changed File Detection
 on:
   push:
     branches:
-      - master  # <-- your branch
+      - master  # Trigger only on pushes to the master branch
 
 jobs:
   detect-and-prepare:
@@ -16,17 +16,23 @@ jobs:
     - name: Detect changed files
       id: detect
       run: |
+        # Safely fetch the last 2 commits from the repo
         git fetch origin master --depth=2
+
+        # Compare the latest commit (HEAD) with the one before (HEAD^)
         git diff --name-only HEAD^ HEAD > changed_files.txt
+
         echo "Changed files:"
         cat changed_files.txt
+
+        # Store the list of changed files in a GitHub environment variable
         echo "FILES<<EOF" >> $GITHUB_ENV
         cat changed_files.txt >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
 
     - name: Copy only changed files to deploy folder
       run: |
-        mkdir deploy
+        mkdir -p deploy
         while IFS= read -r file; do
           echo "Copying $file"
           if [[ -f "$file" ]]; then
@@ -41,7 +47,7 @@ jobs:
         find deploy/
 
     - name: Upload deploy folder as artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: deploy-folder
         path: deploy/
