@@ -3,7 +3,7 @@ name: Test Changed File Detection
 on:
   push:
     branches:
-      - master  # Trigger only on pushes to the master branch
+      - master
 
 jobs:
   detect-and-prepare:
@@ -13,19 +13,27 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Detect changed files
+    - name: Detect changed files (safe)
       id: detect
       run: |
-        # Safely fetch the last 2 commits from the repo
-        git fetch origin master --depth=2
+        echo "Recent commits:"
+        git log -2 --oneline || echo "Only one commit found"
 
-        # Compare the latest commit (HEAD) with the one before (HEAD^)
-        git diff --name-only HEAD^ HEAD > changed_files.txt
+        # Check how many commits exist
+        COMMIT_COUNT=$(git rev-list --count HEAD)
+        echo "Commit count: $COMMIT_COUNT"
+
+        if [ "$COMMIT_COUNT" -eq 1 ]; then
+          echo "First commit detected. Listing all files."
+          git ls-files > changed_files.txt
+        else
+          echo "Using git diff to get changed files"
+          git diff --name-only HEAD^ HEAD > changed_files.txt
+        fi
 
         echo "Changed files:"
         cat changed_files.txt
 
-        # Store the list of changed files in a GitHub environment variable
         echo "FILES<<EOF" >> $GITHUB_ENV
         cat changed_files.txt >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
@@ -44,7 +52,7 @@ jobs:
     - name: Show deploy folder content
       run: |
         echo "Deployed files:"
-        find deploy/
+        find deploy/ || echo "No files to deploy"
 
     - name: Upload deploy folder as artifact
       uses: actions/upload-artifact@v4
