@@ -3,7 +3,7 @@ name: Test Changed File Detection
 on:
   push:
     branches:
-      - master
+      - master  # <-- your branch
 
 jobs:
   detect-and-prepare:
@@ -13,12 +13,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Show current and previous commits
-      run: |
-        echo "Before: ${{ github.event.before }}"
-        echo "After:  ${{ github.sha }}"
-
-        - name: Detect changed files
+    - name: Detect changed files
       id: detect
       run: |
         git fetch origin master --depth=2
@@ -28,7 +23,6 @@ jobs:
         echo "FILES<<EOF" >> $GITHUB_ENV
         cat changed_files.txt >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
-
 
     - name: Copy only changed files to deploy folder
       run: |
@@ -45,3 +39,9 @@ jobs:
       run: |
         echo "Deployed files:"
         find deploy/
+
+    - name: Upload deploy folder as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: deploy-folder
+        path: deploy/
